@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CharacterItem = ({ itemData }) => {
+const CharacterItem = ({ itemData, addToFavorite }) => {
   const { name, image, species, type, location } = itemData;
 
   const sliceString = (str, limit) => {
@@ -12,10 +12,10 @@ const CharacterItem = ({ itemData }) => {
   };
 
   return (
-    <div className="border border-gray-500 rounded flex flex-col w-full sm:max-w-56 md:w-52 p-4 shadow-md md:mx-4 my-5 cursor-pointer">
+    <div className="border border-gray-500 rounded flex flex-col w-full sm:max-w-56 md:w-52 p-4 shadow-md md:mx-4 my-5 justify-between">
       <h3 className="font-bold text-xl pb-2">{name}</h3>
       <img src={image} alt={name} className="rounded" />
-      <ul className="text-sm pt-3">
+      <ul className="text-sm py-3">
         <li>
           <span className="font-bold">Species: </span>
           {species}
@@ -29,6 +29,13 @@ const CharacterItem = ({ itemData }) => {
           {location.name ? sliceString(location.name, 10) : ''}
         </li>
       </ul>
+      <button
+        type="button"
+        onClick={addToFavorite}
+        className="focus:outline-none cursor-pointer bg-blue-500 rounded text-white font-bold"
+      >
+        Add to Favorites
+      </button>
     </div>
   );
 };
